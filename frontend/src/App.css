@@ -1,0 +1,104 @@
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  padding: 2rem 2.5rem 2.5rem;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.header {
+  margin-bottom: 2rem;
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  text-shadow: 0 0 40px rgba(0, 212, 170, 0.15);
+  animation: title-in 0.6s ease-out;
+}
+
+@keyframes title-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title-icon {
+  font-size: 1.6rem;
+  filter: drop-shadow(0 0 8px rgba(0, 212, 170, 0.3));
+}
+
+.subtitle {
+  color: var(--text-muted);
+  margin: 0.5rem 0 0 0;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.subtitle .accent {
+  color: var(--accent-cyan);
+  font-weight: 500;
+  text-shadow: 0 0 20px rgba(0, 212, 170, 0.2);
+}
+
+.error-banner {
+  background: var(--danger-dim);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  padding: 1rem 1.5rem;
+  border-radius: 14px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.1);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 0 0 1.1rem 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.metrics-section {
+  margin-bottom: 2rem;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 700px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.charts-section {
+  margin-bottom: 2.5rem;
+}

@@ -1,0 +1,87 @@
+.chart-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.chart-card--single {
+  border-radius: 20px;
+  padding: 1.5rem 1.75rem;
+  background: var(--glass-card);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-card), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+  backdrop-filter: blur(12px);
+  animation: chart-in 0.6s ease-out 0.2s backwards;
+}
+
+@keyframes chart-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chart-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 0.6rem 0;
+  letter-spacing: 0.02em;
+}
+
+.chart-legend-inline {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.legend-item::before {
+  content: '';
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.legend-item--cpu::before {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 10px var(--accent-cyan-dim);
+}
+
+.legend-item--algo::before {
+  background: var(--accent-magenta);
+  box-shadow: 0 0 10px var(--accent-magenta-dim);
+}
+
+.legend-item--cpu {
+  color: var(--accent-cyan);
+}
+
+.legend-item--algo {
+  color: var(--accent-magenta);
+}
+
+.chart-inner {
+  min-height: 320px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.chart-inner .recharts-cartesian-grid-horizontal line,
+.chart-inner .recharts-cartesian-grid-vertical line {
+  stroke: var(--border);
+}
