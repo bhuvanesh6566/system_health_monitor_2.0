@@ -1,0 +1,58 @@
+.remote-agents-container { padding: 1.5rem; }
+
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.agent-card {
+  background: #1e1e2e;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  border: 1px solid #2a2a3e;
+}
+.agent-live { border-color: #6366f1; }
+.agent-stale { border-color: #ef4444; opacity: 0.75; }
+
+.agent-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+.agent-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  flex-shrink: 0;
+}
+.agent-stale .agent-dot { background: #ef4444; }
+.agent-name { font-weight: 600; font-size: 0.95rem; flex: 1; color: #e2e8f0; }
+.agent-age { font-size: 0.72rem; color: #64748b; }
+
+.agent-metrics { display: flex; flex-direction: column; gap: 0.45rem; }
+.agent-metric { display: flex; align-items: center; gap: 0.5rem; }
+.am-label { width: 34px; font-size: 0.72rem; color: #94a3b8; }
+.am-bar-wrap { flex: 1; height: 6px; background: #2d2d44; border-radius: 3px; overflow: hidden; }
+.am-bar { height: 100%; border-radius: 3px; transition: width 0.4s ease; }
+.am-val { width: 40px; text-align: right; font-size: 0.78rem; color: #cbd5e1; }
+
+.agent-net { margin-top: 0.7rem; font-size: 0.75rem; color: #64748b; }
+
+.agent-empty {
+  margin-top: 2rem;
+  color: #64748b;
+  text-align: center;
+  line-height: 1.8;
+}
+.agent-empty code {
+  display: block;
+  margin-top: 0.5rem;
+  background: #1e1e2e;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: #a5b4fc;
+}

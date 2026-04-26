@@ -1,10 +1,12 @@
 import csv
-import time
 import os
+import time
 from datetime import datetime
+
 import os_monitor
 import db_monitor
 import algo_monitor
+import health_storage
 
 # --- CONFIGURATION ---
 FILE_NAME = "system_health.csv"
@@ -53,7 +55,21 @@ def collect_training_data():
                 
                 # 4. Write to CSV
                 writer.writerow(row)
-                
+
+                # 4b. Store in MySQL (best-effort)
+                try:
+                    health_storage.insert_reading(
+                        recorded_at=datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S"),
+                        cpu_percent=os_metrics[0],
+                        ram_percent=os_metrics[1],
+                        disk_read_mbs=os_metrics[2],
+                        db_connections=db_conns,
+                        algo_time_ms=algo_time,
+                        is_healthy=None,
+                    )
+                except Exception as e:
+                    print(f"MySQL store warning: {e}")
+
                 # 5. Print status (so you know it's not frozen)
                 print(f"Row {i+1}/{ROWS_TO_COLLECT}: {row}")
                 

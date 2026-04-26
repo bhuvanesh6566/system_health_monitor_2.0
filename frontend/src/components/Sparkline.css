@@ -1,0 +1,11 @@
+.sparkline {
+  width: 48px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.sparkline svg {
+  display: block;
+  vertical-align: middle;
+}

@@ -16,6 +16,83 @@
   padding: 1.5rem 1rem;
 }
 
+.header-with-tabs {
+  text-align: left;
+}
+
+.header-with-tabs .header-top {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 0.5rem 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.tab:hover {
+  color: var(--text);
+  border-color: var(--border-bright);
+}
+
+.tab-active {
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  background: var(--accent-cyan-dim);
+}
+
+.tab-panel {
+  min-height: 0;
+}
+
+.tab-panel-overview {
+  width: 100%;
+}
+
+.tab-panel-hidden {
+  display: none;
+}
+
+.overview-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem;
+  color: var(--text-muted);
+}
+
+.overview-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent-cyan);
+  border-radius: 50%;
+  animation: overview-spin 0.8s linear infinite;
+}
+
+@keyframes overview-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .title {
   font-family: var(--font-display);
   font-size: 1.9rem;
@@ -101,4 +178,8 @@
 
 .charts-section {
   margin-bottom: 2.5rem;
+}
+
+.overview-container {
+  width: 100%;
 }

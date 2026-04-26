@@ -11,32 +11,31 @@ import {
 } from 'recharts'
 import './ChartsRow.css'
 
-interface DataPoint {
-  time: string
-  cpu: number
-  algo_ms: number
-}
-
 interface ChartsRowProps {
   cpuData: { time: string; cpu: number }[]
   algoData: { time: string; algo_ms: number }[]
 }
 
-function mergeData(
-  cpuData: { time: string; cpu: number }[],
-  algoData: { time: string; algo_ms: number }[]
-): DataPoint[] {
-  const len = Math.min(cpuData.length, algoData.length)
-  if (len === 0) return []
-  return Array.from({ length: len }, (_, i) => ({
-    time: cpuData[i].time,
-    cpu: cpuData[i].cpu,
+export function ChartsRow({ cpuData, algoData }: ChartsRowProps) {
+  const maxLen = Math.max(cpuData.length, algoData.length)
+  const data = Array.from({ length: maxLen }, (_, i) => ({
+    time: cpuData[i]?.time || algoData[i]?.time || '',
+    cpu: cpuData[i]?.cpu ?? 0,
     algo_ms: algoData[i]?.algo_ms ?? 0,
   }))
-}
 
-export function ChartsRow({ cpuData, algoData }: ChartsRowProps) {
-  const data = mergeData(cpuData, algoData)
+  if (data.length === 0) {
+    return (
+      <div className="chart-card chart-card--single">
+        <h3 className="chart-title">Performance trends — CPU & algorithm latency</h3>
+        <div className="chart-inner" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)' }}>
+          Collecting data...
+        </div>
+      </div>
+    )
+  }
+
+
 
   return (
     <div className="chart-card chart-card--single">
@@ -46,7 +45,7 @@ export function ChartsRow({ cpuData, algoData }: ChartsRowProps) {
         <span className="legend-item legend-item--algo">Latency (ms)</span>
       </div>
       <div className="chart-inner">
-        <ResponsiveContainer width="100%" height={320}>
+        <ResponsiveContainer width="100%" height={320} minHeight={200}>
           <ComposedChart data={data} margin={{ top: 16, right: 56, left: 8, bottom: 8 }}>
             <defs>
               <linearGradient id="algoGrad" x1="0" y1="0" x2="0" y2="1">
@@ -103,6 +102,10 @@ export function ChartsRow({ cpuData, algoData }: ChartsRowProps) {
               fill="url(#algoGrad)"
               stroke="var(--accent-magenta)"
               strokeWidth={2}
+              animationDuration={1000}
+              animationEasing="linear"
+              isAnimationActive={true}
+              dot={false}
             />
             <Line
               yAxisId="left"
@@ -110,6 +113,9 @@ export function ChartsRow({ cpuData, algoData }: ChartsRowProps) {
               dataKey="cpu"
               stroke="var(--accent-cyan)"
               strokeWidth={2.5}
+              animationDuration={1000}
+              animationEasing="linear"
+              isAnimationActive={true}
               dot={false}
             />
           </ComposedChart>
